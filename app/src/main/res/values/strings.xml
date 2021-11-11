@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Card Info Fynder</string>
+    <string name="onboarding_description">Scan the front part of your card or enter the 16-digit number on the card</string>
+</resources>
