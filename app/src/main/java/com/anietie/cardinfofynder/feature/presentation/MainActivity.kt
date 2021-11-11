@@ -1,4 +1,4 @@
-package com.anietie.cardinfofynder.presentation
+package com.anietie.cardinfofynder.feature.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

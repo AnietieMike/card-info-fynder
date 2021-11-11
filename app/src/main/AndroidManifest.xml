@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CardInfoFynder">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name="com.anietie.cardinfofynder.feature.presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
