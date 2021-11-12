@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.anietie.cardinfofynder.core.navigation.NavManager
 import com.anietie.cardinfofynder.core.state.ResponseState
 import com.anietie.cardinfofynder.feature.data.CardInfoFynderRepositoryImpl
 import com.anietie.cardinfofynder.feature.data.network.model.CardInfo
@@ -13,7 +12,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class CardInfoViewModel constructor(
-    private val navManager: NavManager,
     private val cardInfoFynderRepositoryImpl: CardInfoFynderRepositoryImpl
 ) : ViewModel() {
 
@@ -22,20 +20,16 @@ class CardInfoViewModel constructor(
         get() = _result
 
     fun getCardInfo(bin: String) {
+        _result.value = ResponseState.loading()
         viewModelScope.launch {
             try {
                 cardInfoFynderRepositoryImpl.getCardInfo(bin).collect {
                     _result.value = it
-                    Log.d("Viewmodel try block", "$it")
+                    Log.d("Viewmodel result", "getCardInfo: ${_result.value}")
                 }
             } catch (e: Exception) {
-                println("Something went wrong!")
+                println("An error occurred!")
             }
         }
-    }
-
-    fun navigateToCardDetails(cardBrand: String, cardType: String, bank: String, country: String) {
-        val navDirections = HomeFragmentDirections.actionHomeFragmentToCardInfoFragment(cardBrand, cardType, bank, country)
-        navManager.navigate(navDirections)
     }
 }

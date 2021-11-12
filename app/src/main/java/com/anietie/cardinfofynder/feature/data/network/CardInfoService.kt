@@ -6,6 +6,6 @@ import retrofit2.http.Path
 
 interface CardInfoService {
 
-    @GET("/{bin}")
+    @GET("{bin}")
     suspend fun fetchCardInfo(@Path("bin") bin: String): CardInfo
 }

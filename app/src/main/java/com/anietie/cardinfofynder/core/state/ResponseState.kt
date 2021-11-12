@@ -28,7 +28,7 @@ data class ResponseState<out T>(
         }
 
         fun <T> loading(data: T? = null): ResponseState<T> {
-            return ResponseState(Status.LOADING, data, null, null)
+            return ResponseState(Status.LOADING, null, null, null)
         }
     }
 }
