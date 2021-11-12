@@ -1,6 +1,6 @@
 package com.anietie.cardinfofynder.core.di
 
-import com.anietie.cardinfofynder.core.base.ApiServiceFactory
+import com.anietie.cardinfofynder.core.ApiServiceFactory
 import org.koin.dsl.module
 
 val networkModule = module {

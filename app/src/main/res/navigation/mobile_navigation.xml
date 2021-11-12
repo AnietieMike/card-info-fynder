@@ -9,21 +9,32 @@
         android:id="@+id/homeFragment"
         android:name="com.anietie.cardinfofynder.feature.presentation.HomeFragment"
         android:label="Card Info Finder"
-        tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/cardNumberFragment"
-        android:name="com.anietie.cardinfofynder.feature.presentation.CardNumberFragment"
-        android:label="Enter Card Number"
-        tools:layout="@layout/fragment_enter_card_number" />
-    <fragment
-        android:id="@+id/scanCardFragment"
-        android:name="com.anietie.cardinfofynder.feature.presentation.ScanCardFragment"
-        android:label="Scan Card"
-        tools:layout="@layout/fragment_scan_card" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_cardInfoFragment"
+            app:destination="@id/cardInfoFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/cardInfoFragment"
         android:name="com.anietie.cardinfofynder.feature.presentation.CardInfoFragment"
         android:label="Card Information"
-        tools:layout="@layout/fragment_card_info" />
+        tools:layout="@layout/fragment_card_info" >
+        <argument
+            android:name="cardBrand"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="cardType"
+            app:argType="string"
+            android:defaultValue="null" />
+        <argument
+            android:name="bank"
+            app:argType="string"
+            android:defaultValue="GTBank" />
+        <argument
+            android:name="country"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

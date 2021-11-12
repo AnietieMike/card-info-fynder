@@ -1,4 +1,4 @@
-package com.anietie.cardinfofynder.core.base
+package com.anietie.cardinfofynder.core.state
 
 /**
  * Base Class for handling errors/failures/exceptions.

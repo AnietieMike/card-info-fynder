@@ -1,9 +1,9 @@
 package com.anietie.cardinfofynder.feature.domain.usecase
 
-import com.anietie.cardinfofynder.core.base.ResponseState
+import com.anietie.cardinfofynder.core.state.ResponseState
 import com.anietie.cardinfofynder.feature.data.network.model.CardInfo
 import com.anietie.cardinfofynder.feature.domain.CardInfoFynderRepository
-import com.chamsmobile.android.core.functional.base.FlowUseCase
+import com.anietie.cardinfofynder.core.FlowUseCase
 import kotlinx.coroutines.flow.Flow
 
 class GetCardInfoUsecase(

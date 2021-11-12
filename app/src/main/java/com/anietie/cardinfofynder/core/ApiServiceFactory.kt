@@ -1,4 +1,4 @@
-package com.anietie.cardinfofynder.core.base
+package com.anietie.cardinfofynder.core
 
 import com.anietie.cardinfofynder.feature.data.network.CardInfoService
 import okhttp3.OkHttpClient

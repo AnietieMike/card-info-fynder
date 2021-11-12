@@ -1,4 +1,4 @@
-package com.anietie.cardinfofynder.core.base
+package com.anietie.cardinfofynder.core.state
 
 sealed class Result<out R> {
     data class Success<out T>(val data: T) : Result<T>() // Status success and data of the result

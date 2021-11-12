@@ -1,4 +1,4 @@
-package com.anietie.cardinfofynder.core.base
+package com.anietie.cardinfofynder.core.state
 
 import java.lang.Exception
 
@@ -15,7 +15,7 @@ data class ResponseState<out T>(
     enum class Status {
         SUCCESS,
         ERROR,
-        LOADING
+        LOADING,
     }
 
     companion object {

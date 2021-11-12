@@ -1,6 +1,6 @@
-package com.chamsmobile.android.core.functional.base
+package com.anietie.cardinfofynder.core
 
-import com.anietie.cardinfofynder.core.base.ResponseState
+import com.anietie.cardinfofynder.core.state.ResponseState
 import kotlinx.coroutines.flow.Flow
 
 /**
