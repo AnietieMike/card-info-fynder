@@ -40,7 +40,6 @@ class CardInfoFragment : Fragment() {
         cardInfoViewModel.result.observe(
             viewLifecycleOwner,
             { result ->
-
                 Log.d("ResultsSuccess", "subscribeObservers: $result")
                 when (result.status) {
                     ResponseState.Status.SUCCESS -> {
@@ -53,8 +52,8 @@ class CardInfoFragment : Fragment() {
                                 progressBar.hide()
                                 cardBrandTextView.text = cardInfo.scheme.uppercase()
                                 cardTypeTextView.text = cardInfo.type.uppercase()
-                                bankTextView.text = cardInfo.bank.name.uppercase()
-                                countryTextView.text = cardInfo.country.name.uppercase()
+                                bankTextView.text = cardInfo.bank.name?.uppercase() ?: "Information not provided"
+                                countryTextView.text = cardInfo.country.name?.uppercase() ?: "Information not provided"
                                 cardTypeTitleTextView.show()
                                 cardBrandTitleTextView.show()
                                 bankTitleTextView.show()

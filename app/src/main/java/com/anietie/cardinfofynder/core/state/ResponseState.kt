@@ -1,14 +1,12 @@
 package com.anietie.cardinfofynder.core.state
 
-import java.lang.Exception
-
 /**
  * Generic class for holding success response, error response and loading status
  */
 data class ResponseState<out T>(
     val status: Status,
     val data: T?,
-    val error: Exception?,
+    val error: Throwable?,
     var message: String?
 ) {
 
@@ -23,7 +21,7 @@ data class ResponseState<out T>(
             return ResponseState(Status.SUCCESS, data, null, null)
         }
 
-        fun <T> error(message: String, error: Exception?): ResponseState<Nothing> {
+        fun <T> error(message: String, error: Throwable): ResponseState<Nothing> {
             return ResponseState(Status.ERROR, null, error, message)
         }
 

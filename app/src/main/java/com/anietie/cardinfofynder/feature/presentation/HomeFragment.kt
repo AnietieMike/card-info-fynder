@@ -31,8 +31,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        subscribeObserver()
-
         binding.cardNumberEditText.doAfterTextChanged {
             activateSubmitButton()
         }
@@ -43,43 +41,6 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.cardInfoFragment)
         }
     }
-
-//    private fun subscribeObserver() {
-//        cardInfoViewModel.result.observe(
-//            viewLifecycleOwner,
-//            Observer { result ->
-//                Log.d("ResultsSuccess", "subscribeObservers: $result")
-//                when (result.status) {
-//                    ResponseState.Status.SUCCESS -> {
-////                        binding.progressBar?.visibility = View.GONE
-//                        result.data?.let { cardInfo ->
-//                            Log.d("ResultsData", "subscribeObservers: $cardInfo")
-//                            val action = HomeFragmentDirections.actionHomeFragmentToCardInfoFragment(
-//                                cardInfo.scheme,
-//                                cardInfo.type,
-//                                cardInfo.bank.name,
-//                                cardInfo.country.name
-//                            )
-//                            findNavController().navigate(action)
-//                        }
-//                    }
-//                    ResponseState.Status.ERROR -> {
-////                        binding.progressBar?.visibility = View.INVISIBLE
-//                        result.message?.let {
-//                            Toast.makeText(
-//                                requireContext(),
-//                                it,
-//                                Toast.LENGTH_SHORT
-//                            ).show()
-//                        }
-//                    }
-//                    ResponseState.Status.LOADING -> {
-//                        // Implement a progress bar
-//                    }
-//                }
-//            }
-//        )
-//    }
 
     private fun activateSubmitButton() {
         binding.submitCardNumberButton.isEnabled = binding.cardNumberEditText.text?.length!! == 8

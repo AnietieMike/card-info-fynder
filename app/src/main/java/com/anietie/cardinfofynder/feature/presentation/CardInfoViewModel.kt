@@ -28,6 +28,7 @@ class CardInfoViewModel constructor(
                     Log.d("Viewmodel result", "getCardInfo: ${_result.value}")
                 }
             } catch (e: Exception) {
+                _result.value = null
                 println("An error occurred!")
             }
         }

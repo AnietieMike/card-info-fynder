@@ -18,8 +18,8 @@ class CardInfoFynderRepositoryImpl constructor(
             val cardDetails = cardInfoService.fetchCardInfo(bin)
             Log.d("RepoSuccessResponse", "getCardInfo: $cardDetails")
             emit(ResponseState.success(cardDetails))
-        } catch (e: Exception) {
-            emit(ResponseState.error<Nothing>("Encountered an error", e))
+        } catch (e: Throwable) {
+            emit(ResponseState.error<Nothing>(e.localizedMessage.toString(), e))
         }
     }
 }
