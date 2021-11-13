@@ -1,90 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/sailor_blue"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="@+id/lottie_guideline"
-        app:layout_constraintBottom_toTopOf="@id/buttons_guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:lottie_rawRes="@raw/credit_card_anim"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"/>
-
-    <TextView
-        android:id="@+id/onboardingText"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:fontFamily="@font/ubuntu"
-        android:lineSpacingExtra="8sp"
-        android:padding="8dp"
-        android:text="@string/onboarding_description"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttons_guideline" />
+        android:layout_height="match_parent"
+        android:paddingBottom="32dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/card_number_text_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@color/white"
-        app:boxBackgroundMode="outline"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:counterEnabled="true"
-        app:counterMaxLength="16"
-        app:cornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/onboardingText">
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/lottie_guideline"
+            app:layout_constraintBottom_toTopOf="@id/buttons_guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:lottie_rawRes="@raw/credit_card_anim"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/card_number_edit_text"
+        <TextView
+            android:id="@+id/onboardingText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/ubuntu"
+            android:lineSpacingExtra="8sp"
+            android:padding="8dp"
+            android:text="@string/onboarding_description"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttons_guideline" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/card_number_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:boxBackgroundMode="outline"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:counterEnabled="true"
+            android:background="@color/white"
+            app:counterMaxLength="8"
+            app:counterTextColor="@color/sailor_blue"
             app:cornerRadius="15dp"
-            android:layout_margin="8dp"
-            android:inputType="number"
-            android:hint="Enter first 8 digits of your card"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/onboardingText">
 
-    <Button
-        android:id="@+id/submit_card_number_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:padding="12dp"
-        android:textSize="16sp"
-        android:fontFamily="@font/fira_sans_semibold"
-        android:text="Submit"
-        android:enabled="false"
-        app:cornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_number_text_input"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/card_number_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                app:cornerRadius="15dp"
+                android:layout_margin="8dp"
+                android:paddingTop="8dp"
+                android:inputType="number"
+                android:hint="@string/card_input_hint"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/lottie_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05" />
+        <Button
+            android:id="@+id/submit_card_number_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="12dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/fira_sans_semibold"
+            android:text="@string/submit_button"
+            android:enabled="false"
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_number_text_input"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/buttons_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.55" />
+        <Button
+            android:id="@+id/explore_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="12dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/fira_sans_semibold"
+            android:text="@string/scan_card_text"
+            android:textColor="@color/island_green"
+            android:backgroundTint="@color/white"
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/submit_card_number_button"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/lottie_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/buttons_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

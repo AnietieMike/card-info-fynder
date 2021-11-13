@@ -68,20 +68,20 @@ class CardInfoFragment : Fragment() {
                     }
                     ResponseState.Status.ERROR -> {
                         result.message?.let {
-                            binding.imageView2.show()
-                            binding.errorTextView.text = it
-                            binding.errorTextView.show()
-                        }
-                        with(binding) {
-                            progressBar.hide()
-                            cardBrandTitleTextView.hide()
-                            cardBrandTextView.hide()
-                            cardTypeTitleTextView.hide()
-                            cardTypeTextView.hide()
-                            bankTitleTextView.hide()
-                            bankTextView.hide()
-                            countryTitleTextView.hide()
-                            countryTextView.hide()
+                            with(binding) {
+                                imageView2.show()
+                                errorTextView.text = it
+                                errorTextView.show()
+                                progressBar.hide()
+                                cardBrandTitleTextView.hide()
+                                cardBrandTextView.hide()
+                                cardTypeTitleTextView.hide()
+                                cardTypeTextView.hide()
+                                bankTitleTextView.hide()
+                                bankTextView.hide()
+                                countryTitleTextView.hide()
+                                countryTextView.hide()
+                            }
                         }
                     }
                     ResponseState.Status.LOADING -> {

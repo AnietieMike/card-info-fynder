@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/sailor_blue"
     android:paddingVertical="24dp">
 
     <ImageView
@@ -13,9 +14,9 @@
         android:src="@drawable/ic_error_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45"
         app:tint="@color/design_default_color_error" />
 
     <TextView
@@ -43,6 +44,8 @@
         android:layout_marginHorizontal="16dp"
         android:text="Card Brand"
         android:textSize="18sp"
+        android:textColor="@color/island_green"
+            android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/card_brand_text_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -56,9 +59,11 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="4dp"
+        android:textColor="@color/white"
         android:fontFamily="@font/fira_sans_semibold"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/card_type_title_text_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -73,6 +78,8 @@
         android:layout_marginTop="16dp"
         android:text="Card Type"
         android:textSize="18sp"
+        android:textColor="@color/island_green"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/card_type_text_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_brand_text_view" />
@@ -86,6 +93,8 @@
         android:fontFamily="@font/fira_sans_semibold"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/bank_title_text_view"
         app:layout_constraintTop_toBottomOf="@+id/card_type_title_text_view" />
 
@@ -97,6 +106,8 @@
         android:layout_marginTop="16dp"
         android:text="Bank"
         android:textSize="18sp"
+        android:textColor="@color/island_green"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/bank_text_view"
         app:layout_constraintTop_toBottomOf="@+id/card_type_text_view" />
 
@@ -109,6 +120,8 @@
         android:fontFamily="@font/fira_sans_semibold"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/country_title_text_view"
         app:layout_constraintTop_toBottomOf="@+id/bank_title_text_view" />
 
@@ -120,6 +133,8 @@
         android:layout_marginTop="16dp"
         android:text="Country"
         android:textSize="18sp"
+        android:textColor="@color/island_green"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/country_text_view"
         app:layout_constraintTop_toBottomOf="@+id/bank_text_view" />
 
@@ -132,6 +147,8 @@
         android:fontFamily="@font/fira_sans_semibold"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/country_title_text_view" />
 
@@ -145,6 +162,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

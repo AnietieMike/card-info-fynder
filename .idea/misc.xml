@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/splash_screen_layer_list.xml" value="0.2601851851851852" />
+        <entry key="app/src/main/res/drawable/ic_baseline_credit_card_48.xml" value="0.2601851851851852" />
         <entry key="app/src/main/res/font/ubuntu.xml" value="0.28294177732379977" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24791666666666667" />
         <entry key="app/src/main/res/layout/fragment_card_details.xml" value="0.25" />

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Card Info Fynder</string>
-    <string name="onboarding_description">Scan the front part of your card or enter the 16-digit number on the card</string>
+    <string name="onboarding_description">Scan the front part of your card or enter the first 8 numbers of the 16-digit number on the card</string>
+    <string name="card_input_hint">Enter first 8 digits of your card</string>
+    <string name="scan_card_text">Scan card</string>
+    <string name="submit_button">Submit</string>
 </resources>
