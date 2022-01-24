@@ -94,7 +94,7 @@ There are a few ways to open this project.
 
 ### Command-line + Android Studio
 
-1. Run `git clone https://github.com/igorwojda/android-showcase.git` command to clone project
+1. Run `git clone https://github.com/AnietieMike/card-info-fynder.git` command to clone project
 2. Open `Android Studio` and select `File | Open...` from the menu. Select cloned directory and press `Open` button
 
 
@@ -102,7 +102,7 @@ There are a few ways to open this project.
 ```
 MIT License
 
-Copyright (c) 2019 Igor Wojda
+Copyright (c) 2019 Anietie Udoaka
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 associated documentation files (the "Software"), to deal in the Software without restriction, including
