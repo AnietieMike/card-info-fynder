@@ -4,4 +4,6 @@
     <string name="card_input_hint">Enter first 8 digits of your card</string>
     <string name="scan_card_text">Scan card</string>
     <string name="submit_button">Submit</string>
+    <string name="scan_card">Scan Card</string>
+    <string name="blinkcard_scan">BlinkCard Scan</string>
 </resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "786221225292",
+    "project_id": "card-info-fynder",
+    "storage_bucket": "card-info-fynder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786221225292:android:4b4c21d7603ae6cce36be9",
+        "android_client_info": {
+          "package_name": "com.anietie.cardinfofynder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "786221225292-gfp2m84cmbfha1pdt9ibdhoel1mfdbq2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYJmdejlJK3xxffscURklJr_DnL8hE96k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "786221225292-gfp2m84cmbfha1pdt9ibdhoel1mfdbq2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

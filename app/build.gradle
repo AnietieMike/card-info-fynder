@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -49,6 +50,17 @@ dependencies {
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha02'
     implementation 'com.airbnb.android:lottie:4.1.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation 'com.google.firebase:firebase-analytics:20.0.0'
+
+    //CameraKit
+    implementation 'com.camerakit:camerakit:1.0.0-beta3.11'
+    implementation 'com.camerakit:jpegkit:0.1.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0'
+
+    // OCR
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:17.0.0'
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
 
     // Network related
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -63,6 +75,26 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "org.koin:koin-test:2.x.x"
     // Testing Navigation
     androidTestImplementation'androidx.navigation:navigation-testing:2.3.5'
+}
+
+dependencies {
+    implementation 'com.getbouncer:cardscan-ui:2.1.0004'
+
+    // If you need to support both ARM and x86 devices (< 1% of all android
+    // devices), include this dependency.
+    implementation 'com.getbouncer:tensorflow-lite:2.1.0004'
+
+    //Scan card
+    implementation "com.getbouncer:scan-payment-minimal:2.1.0004"
+
+    implementation "com.getbouncer:scan-camerax:2.1.0004"
+
+//    implementation 'cards.pay:paycardsrecognizer:1.1.0'
+
+//    implementation('com.microblink:blinkcard:2.5.1@aar') {
+//        transitive = true
+//    }
 }

@@ -37,4 +37,15 @@
             app:argType="string" />
     </fragment>
 
+    <fragment
+        android:id="@+id/scanCardFragment"
+        android:name="com.anietie.cardinfofynder.feature.presentation.ScanCardFragment"
+        android:label="ScanCardFragment"
+        tools:layout="@layout/fragment_scan_card"/>
+    <fragment
+        android:id="@+id/cardScanFragment"
+        android:name="com.anietie.cardinfofynder.feature.presentation.CardScanFragment"
+        android:label="CardScanFragment"
+        tools:layout="@layout/fragment_card_scan"/>
+
 </navigation>
