@@ -1,5 +1,7 @@
 package com.anietie.cardinfofynder.feature.presentation
 
+import android.R.attr.data
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,25 +9,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import cards.pay.paycardsrecognizer.sdk.ScanCardIntent
 import com.anietie.cardinfofynder.R
 import com.anietie.cardinfofynder.databinding.FragmentHomeBinding
 import com.getbouncer.cardscan.ui.CardScanActivity
 import com.getbouncer.cardscan.ui.CardScanActivityResult
 import com.getbouncer.cardscan.ui.CardScanActivityResultHandler
 import com.igorwojda.showcase.base.presentation.extension.setOnDebouncedClickListener
+import com.microblink.blinkcard.entities.recognizers.Recognizer
+import com.microblink.blinkcard.entities.recognizers.RecognizerBundle
+import com.microblink.blinkcard.entities.recognizers.blinkcard.BlinkCardRecognizer
+import com.microblink.blinkcard.uisettings.ActivityRunner
+import com.microblink.blinkcard.uisettings.BlinkCardUISettings
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import androidx.core.app.ActivityCompat.startActivityForResult
-
-
-
 
 class HomeFragment : Fragment(), CardScanActivityResultHandler {
 
     private val API_KEY = "ugIud-H7KoE5tEEqhTZ0M-BYtrpVAgh5"
     private val REQUEST_CODE_SCAN_CARD = 1
+    private val REQUEST_CODE_BLINK_CARD = 2
+    private lateinit var blinkcardRecognizer: BlinkCardRecognizer
+    private lateinit var recognizerBundle: RecognizerBundle
 
     private val cardInfoViewModel: CardInfoViewModel by sharedViewModel()
     private var _binding: FragmentHomeBinding? = null
@@ -38,6 +46,8 @@ class HomeFragment : Fragment(), CardScanActivityResultHandler {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        blinkcardRecognizer = BlinkCardRecognizer()
+        recognizerBundle = RecognizerBundle(blinkcardRecognizer)
         return binding.root
     }
 
@@ -55,9 +65,9 @@ class HomeFragment : Fragment(), CardScanActivityResultHandler {
                 findNavController().navigate(R.id.cardInfoFragment)
             }
 
-//            val cardScanRegisterResult = registerForActivityResult(
-//                ActivityResultContracts.StartActivityForResult
-//            )
+            blinkCardButton.setOnDebouncedClickListener {
+                scanBlinkCard()
+            }
 
             scanCardButton.setOnDebouncedClickListener {
 
@@ -94,10 +104,15 @@ class HomeFragment : Fragment(), CardScanActivityResultHandler {
         binding.submitCardNumberButton.isEnabled = binding.cardNumberEditText.text?.length!! == 8
     }
 
-//    private fun scanPayCard() {
-//        val intent: Intent = ScanCardIntent.Builder(this).build()
-//        startActivityForResult(intent, REQUEST_CODE_SCAN_CARD)
-//    }
+    private fun scanBlinkCard() {
+        val settings = BlinkCardUISettings(recognizerBundle)
+        ActivityRunner.startActivityForResult(requireActivity(), REQUEST_CODE_BLINK_CARD, settings)
+    }
+
+    private fun scanPayCard() {
+        val intent: Intent = ScanCardIntent.Builder(requireContext()).build()
+        startActivityForResult(intent, REQUEST_CODE_SCAN_CARD)
+    }
 
     override fun onActivityResult(
         requestCode: Int,
@@ -108,6 +123,28 @@ class HomeFragment : Fragment(), CardScanActivityResultHandler {
 
         if (CardScanActivity.isScanResult(requestCode)) {
             CardScanActivity.parseScanResult(resultCode, data, this)
+        }
+
+        if (requestCode == REQUEST_CODE_BLINK_CARD) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                // load the data into all recognizers bundled within your RecognizerBundle
+                recognizerBundle.loadFromIntent(data)
+
+                // now every recognizer object that was bundled within RecognizerBundle
+                // has been updated with results obtained during scanning session
+
+                // you can get the result by invoking getResult on recognizer
+                val result: BlinkCardRecognizer.Result = blinkcardRecognizer.result
+                if (result.resultState == Recognizer.Result.State.Valid) {
+                    // result is valid, you can use it however you wish
+                    val pan8Digits = result.cardNumber.substring(0, 7)
+                    Log.d("PanLength", "cardScanned: ${pan8Digits.length}")
+                    Log.d("ScanId", "cardScanned: ${result.cardNumber}")
+                    Log.d("Card Owner", "onActivityResult: ${result.owner}")
+                    cardInfoViewModel.getCardInfo(pan8Digits)
+                    findNavController().navigate(R.id.cardInfoFragment)
+                }
+            }
         }
     }
 

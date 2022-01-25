@@ -3,11 +3,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://maven.microblink.com' }
-        maven {
-            allowInsecureProtocol(true)
-            url "http://pay.cards/maven"
-        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.2"

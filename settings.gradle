@@ -3,6 +3,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://maven.microblink.com' }
+        maven {
+            allowInsecureProtocol(true)
+            url "http://pay.cards/maven"
+        }
         jcenter() // Warning: this repository is going to shut down soon
     }
 }

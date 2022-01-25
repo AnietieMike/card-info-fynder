@@ -92,9 +92,9 @@ dependencies {
 
     implementation "com.getbouncer:scan-camerax:2.1.0004"
 
-//    implementation 'cards.pay:paycardsrecognizer:1.1.0'
+    implementation 'cards.pay:paycardsrecognizer:1.1.0'
 
-//    implementation('com.microblink:blinkcard:2.5.1@aar') {
-//        transitive = true
-//    }
+    implementation('com.microblink:blinkcard:2.5.1@aar') {
+        transitive = true
+    }
 }
