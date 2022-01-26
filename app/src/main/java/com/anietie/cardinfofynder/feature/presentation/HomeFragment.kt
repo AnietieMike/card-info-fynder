@@ -9,12 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import cards.pay.paycardsrecognizer.sdk.Card
 import cards.pay.paycardsrecognizer.sdk.ScanCardIntent
-import com.anietie.cardinfofynder.R
 import com.anietie.cardinfofynder.databinding.FragmentHomeBinding
 import com.getbouncer.cardscan.ui.CardScanActivity
 import com.getbouncer.cardscan.ui.CardScanActivityResult
@@ -30,8 +28,9 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class HomeFragment : Fragment(), CardScanActivityResultHandler {
 
     private val API_KEY = "ugIud-H7KoE5tEEqhTZ0M-BYtrpVAgh5"
-    private val REQUEST_CODE_SCAN_CARD = 1
-    private val REQUEST_CODE_BLINK_CARD = 2
+    private val REQUEST_CODE_CARDSCANIO = 1
+    private val REQUEST_CODE_BLINKCARD = 2
+    private val REQUEST_CODE_PAYCARD = 3
     private lateinit var blinkcardRecognizer: BlinkCardRecognizer
     private lateinit var recognizerBundle: RecognizerBundle
 
@@ -55,33 +54,26 @@ class HomeFragment : Fragment(), CardScanActivityResultHandler {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            cardNumberEditText.doAfterTextChanged {
-                activateSubmitButton()
-            }
-
-            submitCardNumberButton.setOnDebouncedClickListener {
-                val cardNumber = binding.cardNumberEditText.text.toString()
-                cardInfoViewModel.getCardInfo(cardNumber)
-                findNavController().navigate(R.id.cardInfoFragment)
-            }
+//            cardNumberEditText.doAfterTextChanged {
+//                activateSubmitButton()
+//            }
+//
+//            submitCardNumberButton.setOnDebouncedClickListener {
+//                val cardNumber = binding.cardNumberEditText.text.toString()
+//                cardInfoViewModel.getCardInfo(cardNumber)
+//                findNavController().navigate(R.id.cardInfoFragment)
+//            }
 
             blinkCardButton.setOnDebouncedClickListener {
                 scanBlinkCard()
             }
 
             scanCardButton.setOnDebouncedClickListener {
+                scanCardScanIO()
+            }
 
-                CardScanActivity.start(
-                    fragment = this@HomeFragment,
-                    apiKey = API_KEY,
-                    enableEnterCardManually = true,
-
-                    // expiry extraction is in beta. See the comment below.
-                    enableExpiryExtraction = true,
-
-                    // name extraction is in beta. See the comment below.
-                    enableNameExtraction = true
-                )
+            payCardButton.setOnDebouncedClickListener {
+                scanPayCard()
             }
         }
 
@@ -100,18 +92,32 @@ class HomeFragment : Fragment(), CardScanActivityResultHandler {
         )
     }
 
-    private fun activateSubmitButton() {
-        binding.submitCardNumberButton.isEnabled = binding.cardNumberEditText.text?.length!! == 8
-    }
+//    private fun activateSubmitButton() {
+//        binding.submitCardNumberButton.isEnabled = binding.cardNumberEditText.text?.length!! == 8
+//    }
 
     private fun scanBlinkCard() {
         val settings = BlinkCardUISettings(recognizerBundle)
-        ActivityRunner.startActivityForResult(requireActivity(), REQUEST_CODE_BLINK_CARD, settings)
+        ActivityRunner.startActivityForResult(this, REQUEST_CODE_BLINKCARD, settings)
     }
 
     private fun scanPayCard() {
         val intent: Intent = ScanCardIntent.Builder(requireContext()).build()
-        startActivityForResult(intent, REQUEST_CODE_SCAN_CARD)
+        startActivityForResult(intent, REQUEST_CODE_CARDSCANIO)
+    }
+
+    private fun scanCardScanIO() {
+        CardScanActivity.start(
+            fragment = this@HomeFragment,
+            apiKey = API_KEY,
+            enableEnterCardManually = true,
+
+            // expiry extraction is in beta
+            enableExpiryExtraction = true,
+
+            // name extraction is in beta.
+            enableNameExtraction = true
+        )
     }
 
     override fun onActivityResult(
@@ -125,7 +131,9 @@ class HomeFragment : Fragment(), CardScanActivityResultHandler {
             CardScanActivity.parseScanResult(resultCode, data, this)
         }
 
-        if (requestCode == REQUEST_CODE_BLINK_CARD) {
+        if (requestCode == REQUEST_CODE_BLINKCARD) {
+
+            // Handles result for BlinkCard
             if (resultCode == Activity.RESULT_OK && data != null) {
                 // load the data into all recognizers bundled within your RecognizerBundle
                 recognizerBundle.loadFromIntent(data)
@@ -137,12 +145,48 @@ class HomeFragment : Fragment(), CardScanActivityResultHandler {
                 val result: BlinkCardRecognizer.Result = blinkcardRecognizer.result
                 if (result.resultState == Recognizer.Result.State.Valid) {
                     // result is valid, you can use it however you wish
-                    val pan8Digits = result.cardNumber.substring(0, 7)
-                    Log.d("PanLength", "cardScanned: ${pan8Digits.length}")
-                    Log.d("ScanId", "cardScanned: ${result.cardNumber}")
+                    val requestNo = result.cardNumber.split(" ")
+                    val panEight = "${requestNo[0]}${requestNo[1]}"
+                    Log.d("Card Lent", "cardScanned: ${panEight.length}")
+                    Log.d("Card Number", "cardScanned: $requestNo")
                     Log.d("Card Owner", "onActivityResult: ${result.owner}")
-                    cardInfoViewModel.getCardInfo(pan8Digits)
-                    findNavController().navigate(R.id.cardInfoFragment)
+                    cardInfoViewModel.getCardInfo(panEight)
+                    val action = HomeFragmentDirections.actionHomeFragmentToScanInfoFragment(
+                        result.cardNumber,
+                        result.expiryDate.originalDateString,
+                        result.cvv
+                    )
+                    findNavController().navigate(action)
+                } else {
+                    Toast.makeText(requireContext(), "Not valid", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            // Handle result for PayCard
+            if (requestCode == REQUEST_CODE_PAYCARD) {
+                if (resultCode != Activity.RESULT_OK) {
+                    if (resultCode == Activity.RESULT_CANCELED) {
+                        Log.i("TAG", "Scan canceled")
+                    } else {
+                        Log.i("Scan Failed", "Scan failed")
+                    }
+                } else {
+                    val card = data!!.getParcelableExtra<Card>(ScanCardIntent.RESULT_PAYCARDS_CARD)
+                    val cardData = """
+                        Card number: ${card?.cardNumberRedacted}
+                        Card holder: ${card?.cardHolderName}
+                        Card expiration date: ${card?.expirationDate}
+                    """.trimIndent()
+                    Log.i("TAG", "Card info: $cardData")
+
+                    val cardNumber = card!!.cardNumber
+                    val panEight = cardNumber.substring(0, 7)
+                    cardInfoViewModel.getCardInfo(panEight)
+                    val action = HomeFragmentDirections.actionHomeFragmentToScanInfoFragment(
+                        cardNumber,
+                        cardExpiryDate = card.expirationDate.toString(),
+                    )
+                    findNavController().navigate(action)
                 }
             }
         }
@@ -161,18 +205,34 @@ class HomeFragment : Fragment(), CardScanActivityResultHandler {
 
     override fun cardScanned(scanId: String?, scanResult: CardScanActivityResult) {
         val pan8Digits = scanResult.pan?.substring(0, 7)
-        Log.d("PanLength", "cardScanned: ${pan8Digits!!.length}")
-        Log.d("ScanId", "cardScanned: ${scanResult.pan}}")
-        cardInfoViewModel.getCardInfo(pan8Digits)
-        findNavController().navigate(R.id.cardInfoFragment)
+        val expiryYear = scanResult.expiryYear?.substring(IntRange(2, 3))
+        val expiryDate = if (scanResult.expiryYear == null) {
+            "Not provided"
+        } else {
+            "${scanResult.expiryMonth}/$expiryYear"
+        }
+        val cvv = if (scanResult.cvc == null) {
+            "Not provided"
+        } else {
+            "${scanResult.cvc}"
+        }
+        if (pan8Digits != null) {
+            cardInfoViewModel.getCardInfo(pan8Digits)
+        }
+        val action = HomeFragmentDirections.actionHomeFragmentToScanInfoFragment(
+            scanResult.pan.toString(),
+            expiryDate,
+            cvv
+        )
+        findNavController().navigate(action)
     }
 
     override fun enterManually(scanId: String?) {
-        findNavController().navigate(R.id.homeFragment)
+        findNavController().popBackStack()
     }
 
     override fun userCanceled(scanId: String?) {
-        findNavController().navigate(R.id.homeFragment)
+        findNavController().popBackStack()
     }
 
     override fun onDestroyView() {

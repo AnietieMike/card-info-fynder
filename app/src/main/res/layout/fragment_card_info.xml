@@ -122,24 +122,78 @@
         android:textStyle="bold"
         android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/country_title_text_view"
+        app:layout_constraintBottom_toTopOf="@+id/card_number_text_view"
         app:layout_constraintTop_toBottomOf="@+id/bank_title_text_view" />
 
     <TextView
-        android:id="@+id/country_title_text_view"
+        android:id="@+id/card_number_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        android:text="Country"
+        android:text="Card Number"
         android:textSize="18sp"
         android:textColor="@color/island_green"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/country_text_view"
+        app:layout_constraintBottom_toTopOf="@+id/card_no_text_view"
         app:layout_constraintTop_toBottomOf="@+id/bank_text_view" />
 
     <TextView
-        android:id="@+id/country_text_view"
+        android:id="@+id/card_no_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/fira_sans_semibold"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/expiry_title_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/card_number_text_view" />
+
+    <TextView
+        android:id="@+id/expiry_title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Expiry Date"
+        android:textSize="18sp"
+        android:textColor="@color/island_green"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/expiry_date_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/card_no_text_view" />
+
+    <TextView
+        android:id="@+id/expiry_date_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/fira_sans_semibold"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/cvv_title_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/expiry_title_text_view" />
+
+    <TextView
+        android:id="@+id/cvv_title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:text="CVV"
+        android:textSize="18sp"
+        android:textColor="@color/island_green"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/cvv_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/expiry_date_text_view" />
+
+    <TextView
+        android:id="@+id/cvv_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -150,7 +204,8 @@
         android:textColor="@color/white"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/country_title_text_view" />
+        app:layout_constraintTop_toBottomOf="@+id/cvv_title_text_view" />
+
 
     <ProgressBar
         android:id="@+id/progress_bar"

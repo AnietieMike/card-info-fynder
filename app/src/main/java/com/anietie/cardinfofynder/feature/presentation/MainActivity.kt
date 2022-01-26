@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.anietie.cardinfofynder.R
 import com.anietie.cardinfofynder.databinding.ActivityMainBinding
+import com.microblink.blinkcard.fragment.RecognizerRunnerFragment
 
 class MainActivity : AppCompatActivity() {
 

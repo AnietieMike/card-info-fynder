@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/layout/fragment_enter_card_number.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_scan_card.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_scan_info.xml" value="0.22" />
       </map>
     </option>
   </component>

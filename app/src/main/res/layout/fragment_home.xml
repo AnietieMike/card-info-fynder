@@ -9,8 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="32dp">
+        android:layout_height="match_parent">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView"
@@ -39,48 +38,48 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/description_guideline" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/card_number_text_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:boxBackgroundMode="outline"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:counterEnabled="true"
-            android:background="@color/white"
-            app:counterMaxLength="8"
-            app:counterTextColor="@color/sailor_blue"
-            app:cornerRadius="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/onboardingText">
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/card_number_text_input"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp"-->
+<!--            app:boxBackgroundMode="outline"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            app:counterEnabled="true"-->
+<!--            android:background="@color/white"-->
+<!--            app:counterMaxLength="8"-->
+<!--            app:counterTextColor="@color/sailor_blue"-->
+<!--            app:cornerRadius="15dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/onboardingText">-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/card_number_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                app:cornerRadius="15dp"
-                android:layout_margin="8dp"
-                android:paddingTop="8dp"
-                android:inputType="number"
-                android:hint="@string/card_input_hint"/>
-        </com.google.android.material.textfield.TextInputLayout>
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/card_number_edit_text"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@color/white"-->
+<!--                app:cornerRadius="15dp"-->
+<!--                android:layout_margin="8dp"-->
+<!--                android:paddingTop="8dp"-->
+<!--                android:inputType="number"-->
+<!--                android:hint="@string/card_input_hint"/>-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <Button
-            android:id="@+id/submit_card_number_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:padding="12dp"
-            android:textSize="18sp"
-            android:fontFamily="@font/fira_sans_semibold"
-            android:text="@string/submit_button"
-            android:enabled="false"
-            app:cornerRadius="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_number_text_input"/>
+<!--        <Button-->
+<!--            android:id="@+id/submit_card_number_button"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:padding="12dp"-->
+<!--            android:textSize="18sp"-->
+<!--            android:fontFamily="@font/fira_sans_semibold"-->
+<!--            android:text="@string/submit_button"-->
+<!--            android:enabled="false"-->
+<!--            app:cornerRadius="15dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/card_number_text_input"/>-->
 
         <Button
             android:id="@+id/scan_card_button"
@@ -96,7 +95,7 @@
             app:cornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/submit_card_number_button"/>
+            app:layout_constraintTop_toBottomOf="@+id/onboardingText"/>
 
         <Button
             android:id="@+id/blink_card_button"
@@ -151,7 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.40" />
+            app:layout_constraintGuide_percent="0.43" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

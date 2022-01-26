@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_cardInfoFragment"
             app:destination="@id/cardInfoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_scanInfoFragment"
+            app:destination="@id/scanInfoFragment" />
     </fragment>
 
     <fragment
@@ -21,31 +24,40 @@
         android:label="Card Information"
         tools:layout="@layout/fragment_card_info" >
         <argument
-            android:name="cardBrand"
-            app:argType="string"
-            android:defaultValue="null" />
-        <argument
-            android:name="cardType"
-            app:argType="string"
-            android:defaultValue="null" />
-        <argument
-            android:name="bank"
-            app:argType="string"
-            android:defaultValue="GTBank" />
-        <argument
-            android:name="country"
+            android:name="cardNumber"
             app:argType="string" />
+        <argument
+            android:name="cardExpiryDate"
+            app:argType="string"
+            android:defaultValue="Information not available" />
+        <argument
+            android:name="cvv"
+            app:argType="string"
+            android:defaultValue="Information not available" />
     </fragment>
 
-    <fragment
-        android:id="@+id/scanCardFragment"
-        android:name="com.anietie.cardinfofynder.feature.presentation.ScanCardFragment"
-        android:label="ScanCardFragment"
-        tools:layout="@layout/fragment_scan_card"/>
     <fragment
         android:id="@+id/cardScanFragment"
         android:name="com.anietie.cardinfofynder.feature.presentation.CardScanFragment"
         android:label="CardScanFragment"
         tools:layout="@layout/fragment_card_scan"/>
+    <fragment
+        android:id="@+id/scanInfoFragment"
+        android:name="com.anietie.cardinfofynder.feature.presentation.ScanInfoFragment"
+        android:label="ScanInfoFragment"
+        tools:layout="@layout/fragment_scan_info">
+
+        <argument
+            android:name="cardNumber"
+            app:argType="string" />
+        <argument
+            android:name="cardExpiryDate"
+            app:argType="string"
+            android:defaultValue="Information not available" />
+        <argument
+            android:name="cvv"
+            app:argType="string"
+            android:defaultValue="Information not available" />
+    </fragment>
 
 </navigation>

@@ -37,6 +37,7 @@ class CardInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        subscribeObserver()
     }
 
     private fun subscribeObserver() {
@@ -56,15 +57,21 @@ class CardInfoFragment : Fragment() {
                                 cardBrandTextView.text = cardInfo.scheme.uppercase()
                                 cardTypeTextView.text = cardInfo.type.uppercase()
                                 bankTextView.text = cardInfo.bank.name?.uppercase() ?: "Information not provided"
-                                countryTextView.text = cardInfo.country.name?.uppercase() ?: "Information not provided"
+                                cardNoTextView.text = args.cardNumber
+                                expiryDateTextView.text = args.cardExpiryDate
+                                cvvTextView.text = args.cvv
                                 cardTypeTitleTextView.show()
                                 cardBrandTitleTextView.show()
                                 bankTitleTextView.show()
-                                countryTitleTextView.show()
+                                cardNumberTextView.show()
+                                cardNoTextView.show()
                                 cardBrandTextView.show()
                                 cardTypeTextView.show()
                                 bankTextView.show()
-                                countryTextView.show()
+                                expiryTitleTextView.show()
+                                expiryDateTextView.show()
+                                cvvTitleTextView.show()
+                                cvvTextView.show()
                             }
                         }
                     }
@@ -81,8 +88,12 @@ class CardInfoFragment : Fragment() {
                                 cardTypeTextView.hide()
                                 bankTitleTextView.hide()
                                 bankTextView.hide()
-                                countryTitleTextView.hide()
-                                countryTextView.hide()
+                                cardNumberTextView.hide()
+                                cardNoTextView.hide()
+                                expiryTitleTextView.hide()
+                                expiryDateTextView.hide()
+                                cvvTitleTextView.hide()
+                                cvvTextView.hide()
                             }
                         }
                     }
@@ -95,8 +106,12 @@ class CardInfoFragment : Fragment() {
                             cardTypeTextView.hide()
                             bankTitleTextView.hide()
                             bankTextView.hide()
-                            countryTitleTextView.hide()
-                            countryTextView.hide()
+                            cardNumberTextView.hide()
+                            cardNoTextView.hide()
+                            expiryTitleTextView.hide()
+                            expiryDateTextView.hide()
+                            cvvTitleTextView.hide()
+                            cvvTextView.hide()
                             imageView2.hide()
                             errorTextView.hide()
                         }
